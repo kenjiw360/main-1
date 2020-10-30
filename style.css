@@ -1,0 +1,102 @@
+@font-face{
+	font-family: Gotham;
+	src: url(gotham.otf);
+}
+html{
+	scroll-behavior: smooth;
+}
+h1{
+	font-family: Gotham;
+}
+h2{
+	font-family: Gotham;
+}
+h3{
+	font-family: Gotham;
+}
+h4{
+	font-family: Gotham;
+}
+pre{
+	font-family: Gotham;
+}
+p{
+	font-family: Gotham;
+}
+center{
+	margin:0px;
+	padding:0px;
+}
+div{
+	margin:0px;
+	padding:0px;
+}
+.landslide{
+	color:white;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	font-size:70px;
+	padding:0px;
+	margin:0px;
+	animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+.arrow{
+	clip-path: polygon(0 0, 50% 50%, 100% 0, 50% 100%);
+	background-color:white;
+	width:10%;
+	height:3.333vh;
+	margin:0px;
+	padding:0px;
+	position:relative;
+	top:95%;
+	animation: fadein ease 3s;
+  -webkit-animation: fadein ease 3s;
+}
+@keyframes fadein {
+0% {opacity:0;}
+50% {opacity:0;}
+100% {opacity:1;}
+}
+@-moz-keyframes fadein {
+0% {opacity:0;}
+50% {opacity:0;}
+100% {opacity:1;}
+}
+@-webkit-keyframes fadein {
+0% {opacity:0;}
+50% {opacity:0;}
+100% {opacity:1;}
+}
+@-o-keyframes fadein {
+0% {opacity:0;}
+50% {opacity:0;}
+100% {opacity:1;}
+}
+@-ms-keyframes fadein {
+0% {opacity:0;}
+50% {opacity:0;}
+100% {opacity:1;}
+}
