@@ -5,6 +5,43 @@
 html{
 	scroll-behavior: smooth;
 }
+errorbackground{
+  position:fixed;
+  padding:0px;
+  margin:0px;
+  background-color: rgba(0,0,0,0.5);
+  height:100vh;
+  width:100%;
+  display:none;
+  z-index:10;
+}
+error{
+  padding:30px;
+  border-radius: 10px;
+  height:50vh;
+  width:50%;
+  background-color: lightcyan;
+  display:none;
+  position: relative;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+errortext{
+  font-family: Gotham;
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+x{
+  float: right;
+  cursor:pointer;
+  font-family: Gotham;
+  font-size: 30px;
+}
 h1{
 	font-family: Gotham;
 }
@@ -71,15 +108,19 @@ input[type=password]:focus{
 }
 button{
   padding:10px;
+  color:black;
   font-family: Gotham;
-  border-radius: 10px;
-  border:none;
+  background-color: rgba(0,0,0,0.03);
+  border: solid 3px black;
+  transition:0.5s;
 }
 button:hover{
-  padding:9px;
+  padding:10px;
+  color:white;
   font-family: Gotham;
-  border-radius: 10px;
-  border: solid 1px rgb(27,167,241);
+  background-color: rgba(27,167,241,0.5);
+  border: solid 3px black;
+  transition: 0.5s;
 }
 .landslide{
 	color:white;
