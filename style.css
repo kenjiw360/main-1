@@ -70,6 +70,7 @@ div{
 .arrow{
 	clip-path: polygon(0 0, 50% 50%, 100% 0, 50% 100%);
 	background-color:white;
+  cursor: pointer;
 	width:10%;
 	height:3.333vh;
 	margin:0px;
