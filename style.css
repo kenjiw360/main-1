@@ -35,6 +35,52 @@ div{
 	margin:0px;
 	padding:0px;
 }
+input[type=text]{
+  padding:10px;
+  font-family: Gotham;
+  font-size:20px;
+  border: none;
+  border-bottom: 2.5px solid rgb(0,0,0);
+  transition: 0.5s;
+}
+input[type=text]:focus{
+  padding:10px;
+  font-family: Gotham;
+  font-size:20px;
+  outline: none;
+  border: none;
+  border-bottom: 2.5px solid rgb(27,167,241);
+  transition: 0.5s;
+}
+input[type=password]{
+  padding:10px;
+  font-family: Gotham;
+  font-size:20px;
+  border: none;
+  border-bottom: 2.5px solid rgb(0,0,0);
+  transition: 0.5s;
+}
+input[type=password]:focus{
+  padding:10px;
+  font-family: Gotham;
+  font-size:20px;
+  outline: none;
+  border: none;
+  border-bottom: 2.5px solid rgb(27,167,241);
+  transition: 0.5s;
+}
+button{
+  padding:10px;
+  font-family: Gotham;
+  border-radius: 10px;
+  border:none;
+}
+button:hover{
+  padding:9px;
+  font-family: Gotham;
+  border-radius: 10px;
+  border: solid 1px rgb(27,167,241);
+}
 .landslide{
 	color:white;
 	position:absolute;
@@ -44,8 +90,8 @@ div{
 	font-size:70px;
 	padding:0px;
 	margin:0px;
-	animation: fadeIn ease 2s;
-  -webkit-animation: fadeIn ease 2s;
+	animation: fadeIn linear 1s;
+  -webkit-animation: fadeIn linear 1s;
 }
 @keyframes fadeIn {
 0% {opacity:0;}
@@ -77,8 +123,8 @@ div{
 	padding:0px;
 	position:relative;
 	top:95%;
-	animation: fadein ease 3s;
-  -webkit-animation: fadein ease 3s;
+	animation: fadein linear 2s;
+  -webkit-animation: fadein linear 2s;
 }
 @keyframes fadein {
 0% {opacity:0;}
