@@ -23,6 +23,10 @@ pre{
 p{
 	font-family: Gotham;
 }
+a{
+	font-family: Gotham;
+  text-decoration: none;
+}
 center{
 	margin:0px;
 	padding:0px;
