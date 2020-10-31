@@ -1,3 +1,6 @@
+if(localStorage.getItem("userToken")){
+  location = "main.html";
+}
 function goSomewhere(x){
   location = x;
 }
@@ -12,15 +15,71 @@ function exit(){
 function signup(){
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
+  if(!(username && password)){
+    errormessage("You didn't fill in all the inputs")
+  }else{
+    db.collection("accounts")
+    .where("username","==",username)
+    .get()
+    .then(function (snapshot){
+      if(snapshot.empty){
+        db.collection("accounts")
+        .add({
+          username: username,
+          password: CryptoJS.SHA256(password).toString(),
+          friends: [],
+          following: [],
+          bio: "This is my bio. Make me interesting!",
+          money: 50,
+          owned: [],
+          profile: "https://avatars.dicebear.com/api/bottts/"+username+".svg"
+        })
+        .then(function (snapshot){
+          localStorage.setItem("userToken",snapshot.id)
+          location = "main.html";
+        })
+      }else{
+        errormessage("That username was already taken.")
+      }
+    })
+  }
+}
+function signin(){
+  var username = document.getElementById("usernamer").value;
+  var password = document.getElementById("passwordr").value;
   db.collection("accounts")
   .where("username","==",username)
   .get()
   .then(function (snapshot){
     if(snapshot.empty){
-
+      errormessage("That account doesn't exist")
     }else{
-      errormessage("That username was already taken.")
+      if(snapshot.docs[0].data().password == CryptoJS.SHA256(password).toString()){
+        localStorage.setItem("userToken","==",snapshot.docs[0].id)
+        location = "main.html"
+      }else{
+        errormessage("Your password was wrong")
+      }
     }
   })
 }
-errormessage("That username was already taken.")
+document.getElementById("username").addEventListener("keypress",function (e){
+  if(e.code == "Enter"){
+    signup()
+  }
+})
+document.getElementById("password").addEventListener("keypress",function (e){
+  if(e.code == "Enter"){
+    signup()
+  }
+})
+document.getElementById("usernamer").addEventListener("keypress",function (e){
+  if(e.code == "Enter"){
+    signin()
+  }
+})
+document.getElementById("passwordr").addEventListener("keypress",function (e){
+  if(e.code == "Enter"){
+    signin()
+  }
+})
