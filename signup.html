@@ -47,6 +47,16 @@
       };
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
+      document.getElementById("username").addEventListener("keypress",function (e){
+        if(e.code == "Enter"){
+          signup()
+        }
+      })
+      document.getElementById("password").addEventListener("keypress",function (e){
+        if(e.code == "Enter"){
+          signup()
+        }
+      })
     </script>
     <script src="signupandin.js"></script>
   </body>

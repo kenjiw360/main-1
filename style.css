@@ -30,17 +30,14 @@ error{
 errortext{
   font-family: Gotham;
   font-size: 20px;
-  position: relative;
-  display: inline-block;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
 }
 x{
   float: right;
   cursor:pointer;
   font-family: Gotham;
   font-size: 30px;
+  width:100%;
+  text-align:right;
 }
 h1{
 	font-family: Gotham;
@@ -54,8 +51,17 @@ h3{
 h4{
 	font-family: Gotham;
 }
+h5{
+	font-family: Gotham;
+}
+h6{
+	font-family: Gotham;
+}
 pre{
 	font-family: Gotham;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
 }
 p{
 	font-family: Gotham;
@@ -191,4 +197,14 @@ button:hover{
 0% {opacity:0;}
 50% {opacity:0;}
 100% {opacity:1;}
+}
+.shopitem{
+  margin:0px;
+  padding:1vh;
+  cursor: pointer;
+  background-color: azure;
+  border: solid 1.5px black;
+  border-radius: 30px 10px 30px 10px;
+  width:30%;
+  height:20vh;
 }

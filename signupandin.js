@@ -32,7 +32,8 @@ function signup(){
           bio: "This is my bio. Make me interesting!",
           money: 50,
           owned: [],
-          profile: "https://avatars.dicebear.com/api/bottts/"+username+".svg"
+          profile: "https://avatars.dicebear.com/api/bottts/"+username+".svg",
+          tutorial: 0
         })
         .then(function (snapshot){
           localStorage.setItem("userToken",snapshot.id)
@@ -55,7 +56,7 @@ function signin(){
       errormessage("That account doesn't exist")
     }else{
       if(snapshot.docs[0].data().password == CryptoJS.SHA256(password).toString()){
-        localStorage.setItem("userToken","==",snapshot.docs[0].id)
+        localStorage.setItem("userToken",snapshot.docs[0].id)
         location = "main.html"
       }else{
         errormessage("Your password was wrong")
@@ -63,23 +64,3 @@ function signin(){
     }
   })
 }
-document.getElementById("username").addEventListener("keypress",function (e){
-  if(e.code == "Enter"){
-    signup()
-  }
-})
-document.getElementById("password").addEventListener("keypress",function (e){
-  if(e.code == "Enter"){
-    signup()
-  }
-})
-document.getElementById("usernamer").addEventListener("keypress",function (e){
-  if(e.code == "Enter"){
-    signin()
-  }
-})
-document.getElementById("passwordr").addEventListener("keypress",function (e){
-  if(e.code == "Enter"){
-    signin()
-  }
-})
