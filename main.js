@@ -63,9 +63,10 @@ function actualchangebio(){
 }
 function everyms(){
   db.collection("shop")
-  .get()
-  .then(function (snapshot){
-    document.getElementById("shop").innerHTML = "";
+  .where("left",">",0)
+  .orderBy("left","desc")
+  .onSnapshot(function (snapshot){
+    var wholething = document.createElement("div");
     for(i=0;i<snapshot.docs.length;i++){
       var name = document.createElement("h3")
       name.innerText = snapshot.docs[i].data().name
@@ -77,16 +78,62 @@ function everyms(){
       cost.innerText = "$"+snapshot.docs[i].data().cost
       var div = document.createElement("div")
       div.className = "shopitem"
-      div.setAttribute("onClick","buy('"+snapshot.docs[i].id+"')")
+      div.setAttribute("onClick","buy('"+snapshot.docs[i].id+"','"+name.innerText+"')")
       div.appendChild(name)
       div.appendChild(left)
       div.appendChild(rarity)
       div.appendChild(cost)
-      document.getElementById("shop").appendChild(div)
+      wholething.appendChild(div)
+    }
+    if(wholething.innerHTML != document.getElementById("shop").innerHTML){
+      console.log("test")
+      document.getElementById("shop").innerHTML = wholething.innerHTML;
     }
   })
 }
 setInterval("everyms()",1)
-function buy(item){
-  db.collection("accounts")
+function buy(item,name){
+  console.log("test")
+  db.collection("shop")
+  .doc(item,name)
+  .get()
+  .then(function (snapshot){
+    var cost = snapshot.data().cost
+    db.collection("accounts")
+    .doc(localStorage.getItem("userToken"))
+    .get()
+    .then(function (snapshots){
+      if(cost > snapshots.data().money){
+        errormessage("You Don't Have Enough Money")
+        return false;
+      }else{
+        db.collection("shop")
+        .doc(item)
+        .update({
+          left: snapshot.data().left-1
+        })
+        .then(function (snapshot){
+          db.collection("accounts")
+          .doc(localStorage.getItem("userToken"))
+          .get()
+          .then(function (snapshots){
+            var items = snapshots.data().owned;
+            items.push(name)
+            var money = snapshots.data().money
+            db.collection("accounts")
+            .doc(localStorage.getItem("userToken"))
+            .update({
+              owned: items,
+              money: snapshots.data().money - cost
+            })
+            .then(function (snapshot){
+              console.log(money)
+              console.log(cost)
+              document.getElementById("balance").innerText = "Balance: $"+(money-cost)
+            })
+          })
+        })
+      }
+    })
+  })
 }

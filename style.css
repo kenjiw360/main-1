@@ -5,7 +5,7 @@
 html{
 	scroll-behavior: smooth;
 }
-errorbackground{
+unfocused{
   position:fixed;
   padding:0px;
   margin:0px;
@@ -14,6 +14,29 @@ errorbackground{
   width:100%;
   display:none;
   z-index:10;
+}
+selldiv{
+  padding:30px;
+  border-radius: 10px;
+  height:75vh;
+  width:75%;
+  text-align:center;
+  background-color: lightcyan;
+  display:none;
+  position: relative;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+errorbackground{
+  position:fixed;
+  padding:0px;
+  margin:0px;
+  background-color: rgba(0,0,0,0.5);
+  height:100vh;
+  width:100%;
+  display:none;
+  z-index:11;
 }
 error{
   padding:30px;
@@ -30,32 +53,43 @@ error{
 errortext{
   font-family: Gotham;
   font-size: 20px;
+  width:100%;
+  display: inline-block;
+  overflow-wrap: break-word;
+  position: relative;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-100%);
 }
 x{
   float: right;
   cursor:pointer;
   font-family: Gotham;
-  font-size: 30px;
-  width:100%;
-  text-align:right;
+  font-size: 3vh;
 }
 h1{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 h2{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 h3{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 h4{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 h5{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 h6{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 pre{
 	font-family: Gotham;
@@ -65,10 +99,19 @@ pre{
 }
 p{
 	font-family: Gotham;
+  overflow-wrap: break-word;
 }
 a{
 	font-family: Gotham;
   text-decoration: none;
+  color:black;
+  overflow-wrap: break-word;
+}
+a:hover{
+	font-family: Gotham;
+  text-decoration: none;
+  color:black;
+  overflow-wrap: break-word;
 }
 center{
 	margin:0px;
@@ -79,6 +122,7 @@ div{
 	padding:0px;
 }
 input[type=text]{
+  background-color: rgba(0,0,0,0);
   padding:10px;
   font-family: Gotham;
   font-size:20px;
@@ -87,6 +131,7 @@ input[type=text]{
   transition: 0.5s;
 }
 input[type=text]:focus{
+  background-color: rgba(0,0,0,0);
   padding:10px;
   font-family: Gotham;
   font-size:20px;
@@ -200,11 +245,12 @@ button:hover{
 }
 .shopitem{
   margin:0px;
+  margin-bottom: 20px;
   padding:1vh;
   cursor: pointer;
   background-color: azure;
   border: solid 1.5px black;
   border-radius: 30px 10px 30px 10px;
-  width:30%;
+  min-width:30%;
   height:20vh;
 }

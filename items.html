@@ -15,36 +15,23 @@
         </errortext>
       </error>
     </errorbackground>
-    <div style="position:fixed;width:100%;height:10vh;background-color: rgb(27,167,241);top:0;margin:0px;padding:0px;z-index:9;text-align:center;">
+    <unfocused>
+      <selldiv>
+        <x onclick="exitr()">X</x>
+      </selldiv>
+    </unfocused>
+    <div style="position:fixed;width:100%;height:10vh;background-color: rgb(27,167,241);top:0;margin:0px;padding:0px;z-index:9;text-align:center;cursor:pointer;" onclick="goSomewhere('main.html')">
       <h1 style="padding:0px;margin:0px;color:white;position:relative;top:50%;transform: translate(0%,-50%)">LANDSLIDE<br><p style="font-size:16px;">Made By Kenji Wang</p></h1>
     </div>
     <div style="height:10vh;margin:0px;padding:0px;">
     </div>
-    <div class="row" style="margin:0px;padding:0px;">
-      <div class="col no-gutters" style="margin:0px;padding:0px;margin-right:-1px;border-right: solid 1px;">
-        <div style="width:100%;padding:10px;margin:0px;height:45vh;margin-bottom:-1px;border-bottom: solid 1px;overflow:auto;">
-            <h2 style="text-align:center;">Account</h2>
-            <h3 id="name"></h3>
-            <p id="balance"></p>
-            <pre id="bio" style="font-style: italic;width:60%;"></pre>
-            <p style="cursor:pointer;" onclick="changebio()" id="changebiotext">Change Bio</p>
-            <a href="items.html" style="cursor:pointer;color:black;text-decoration:none;">See your Items</a>
-        </div>
-        <div style="width:100%;padding:10px;margin:0px;height:45vh;overflow:auto;">
-          <center>
-          </center>
-        </div>
+    <br>
+    <center style="padding:0px;margin:0px;width:100%;">
+      <h2>Your Items</h2>
+      <hr>
+      <div style="display:flex;justify-content: space-around;flex-wrap: wrap;" id="inventory">
       </div>
-      <div class="col no-gutters" style="margin:0px;padding:10px;overflow:auto;">
-        <center style="padding:0px;margin:0px;">
-          <h2>Shop Category</h2>
-          <a href="usershop.html">Go to the Users Market</a>
-          <hr>
-          <div style="display:flex;justify-content: space-around;flex-wrap: wrap;" id="shop">
-          </div>
-        </center>
-      </div>
-    </div>
+    </center>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js">
 		</script>
@@ -63,6 +50,6 @@
       firebase.initializeApp(firebaseConfig);
       const db = firebase.firestore();
     </script>
-    <script src="main.js"></script>
+    <script src="items.js"></script>
   </body>
 </html>
