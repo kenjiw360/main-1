@@ -1,4 +1,7 @@
 var howmanyitems = 0;
+if(!(localStorage.getItem("userToken"))){
+  location = "index.html"
+}
 function goSomewhere(x){
   location = x
 }
@@ -50,6 +53,7 @@ function opensellwindow(name){
   document.getElementsByTagName("unfocused")[0].style["display"] = "block";
   var selldiv = document.getElementsByTagName("selldiv")[0];
   selldiv.style["display"] = "inline-block";
+  selldiv.innerHTML = "<x onclick=\"exitr()\">X</x>";
   db.collection("accounts")
   .doc(localStorage.getItem("userToken"))
   .get()
@@ -68,7 +72,7 @@ function opensellwindow(name){
     submit.style["cursor"] = "pointer";
     submit.style["font-size"] = "20px";
     submit.innerText = "Submit";
-    submit.setAttribute("onClick","sell('"+name+"')")
+    submit.setAttribute("onClick","sell('"+name+"','"+snapshot.data().username+"')")
     var error = document.createElement("p");
     error.id = "error"
     error.style["color"] = "red";
@@ -90,7 +94,7 @@ function opensellwindow(name){
     selldiv.appendChild(div)
   })
 }
-function sell(name){
+function sell(name,username){
   document.getElementById("error").innerText = ""
   var amount = document.getElementById("sellamount").value;
   console.log(parseInt(amount))
@@ -101,7 +105,8 @@ function sell(name){
     .add({
       name: name,
       cost: parseInt(amount),
-      seller: localStorage.getItem("userToken")
+      seller: localStorage.getItem("userToken"),
+      username: username
     })
     .then(function (snapshot){
       db.collection("accounts")
