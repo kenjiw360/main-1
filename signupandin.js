@@ -7,7 +7,7 @@ function goSomewhere(x){
 function errormessage(message){
   document.getElementsByTagName("errorbackground")[0].style["display"] = "block";
   document.getElementsByTagName("error")[0].style["display"] = "inline-block";
-  document.getElementsByTagName("errortext")[0].innerHTML = message;
+  document.getElementsByTagName("errortext")[0].innerText = message;
 }
 function exit(){
   document.getElementsByTagName("errorbackground")[0].style["display"] = "none";

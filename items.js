@@ -27,6 +27,7 @@ function showitems(){
     var wholething = document.createElement("div");
     if(howmanyitems != allitems.length){
       howmanyitems = allitems.length
+      document.getElementById("inventory").innerHTML = "";
       for(i=(allitems.length-1);i>=0;i--){
         db.collection("shop")
         .where("name","==",allitems[i])
@@ -72,7 +73,7 @@ function opensellwindow(name){
     submit.style["cursor"] = "pointer";
     submit.style["font-size"] = "20px";
     submit.innerText = "Submit";
-    submit.setAttribute("onClick","sell('"+name+"','"+snapshot.data().username+"')")
+    submit.setAttribute("onClick","sell('"+name+"',`"+snapshot.data().username+"`)")
     var error = document.createElement("p");
     error.id = "error"
     error.style["color"] = "red";
@@ -98,8 +99,8 @@ function sell(name,username){
   document.getElementById("error").innerText = ""
   var amount = document.getElementById("sellamount").value;
   console.log(parseInt(amount))
-  if(isNaN(parseInt(amount))){
-    document.getElementById("error").innerText = "Your Selling Amount includes characters that aren't numbers"
+  if(isNaN(parseInt(amount)) || amount <= 0){
+    document.getElementById("error").innerText = "Your Selling Amount either includes characters that aren't numbers or is less than or equal to zero"
   }else{
     db.collection("usershop")
     .add({
