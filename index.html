@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Landslide</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body style="padding:0px;margin:0px;">
@@ -15,12 +16,17 @@
       </h1>
 			<div class="arrow" onclick="location = '#bluearrow'"></div>
 		</center>
-		<center style="height:100vh;">
-			<div style="width:100%;height:10vh;clip-path: polygon(50% 100%, 0 0, 100% 0);background-color: rgb(27,167,241);" id="bluearrow"></div>
-			<h1>WHAT IS LANDSLIDE</h1>
-			<p style="width:50%;">Landslide is a challenge. Everyone starts off with $50 and tries to buy all of the items in the shop. Sell items to make money. Buy the items again to make a profit. Every update, new items will arise and everyone gets $50. Will you own all the items? Will you monopolize. Will you have your own empire? Will you win by a landslide?</p>
-      <h1 style="font-size: 50px;">WIN BY A LANDSLIDE</h1>
-		</center>
+		<div class="row" style="margin:0px;padding:0px;height:100vh;" id="bluearrow">
+      <div class="col no-gutters" style="margin:0px;padding:0px;height:100vh;clip-path: polygon(0 0, 100% 0%, 65% 100%, 0% 100%);background-color: rgb(27,167,241);">
+          <h1 style="color:white;position:absolute;top:50%;left:50%;transform: translate(-70%,-50%);">WHAT IS LANDSLIDE?</h1>
+      </div>
+      <div class="col-5 no-gutters" style="margin:0px;padding:0px;height:100vh;">
+        <center style="margin:0px;position:relative;top:50%;left:50%;transform: translate(-50%,-50%);">
+			    <p style="width:90%;">Landslide is a challenge. Everyone starts off with $50 and tries to own the most items. Sell items to make money. Buy the items again to make a profit. Every update, new items will arise and everyone gets $50. Will you monopolize. Will you win by a landslide?</p>
+          <h1 style="font-size: 50px;">WIN BY A LANDSLIDE</h1>
+        </center>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
