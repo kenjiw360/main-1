@@ -73,7 +73,7 @@ function opensellwindow(name){
     submit.style["cursor"] = "pointer";
     submit.style["font-size"] = "20px";
     submit.innerText = "Submit";
-    submit.setAttribute("onClick","sell('"+name+"',`"+snapshot.data().username+"`)")
+    submit.setAttribute("onClick",`sell('`+name+`',\``+snapshot.data().username+`\`)`)
     var error = document.createElement("p");
     error.id = "error"
     error.style["color"] = "red";
