@@ -7,7 +7,7 @@ db.collection("accounts")
 .get()
 .then(function (snapshot){
   if(snapshot.data().tutorial == 0){
-    errormessage("The top left quadrant is your accounts. You can change your bio over their. The bottom left quadrant is your friends, followers, and followings. The right half side is the shop. To buy products, just click on the box that contains the product")
+    errormessage("The top left quadrant is your accounts. You can change your bio over their. The bottom left quadrant is the leaderboards. In the leaderboards, you can see who has the most items and your position in the leaderboards. To buy products, just click on the box that contains the product")
     db.collection("accounts")
     .doc(localStorage.getItem("userToken"))
     .update({
@@ -90,50 +90,63 @@ function everyms(){
       document.getElementById("shop").innerHTML = wholething.innerHTML;
     }
   })
+  db.collection("accounts")
+  .where("amountofitems",">=",0)
+  .orderBy("amountofitems","desc")
+  .onSnapshot(function (snapshot){
+    document.getElementById("bestname").innerText = "Person With Most Items: "+snapshot.docs[0].data().username
+    document.getElementById("howmuchmoney").innerText = "Balance: $"+snapshot.docs[0].data().money
+    document.getElementById("howmanyitems").innerText = "Has "+ snapshot.docs[0].data().amountofitems +" Item(s)."
+  })
 }
 setInterval("everyms()",1)
+var nonegativemoney = 0;
 function buy(item,name){
-  console.log("test")
-  db.collection("shop")
-  .doc(item,name)
-  .get()
-  .then(function (snapshot){
-    var cost = snapshot.data().cost
-    db.collection("accounts")
-    .doc(localStorage.getItem("userToken"))
+  if(nonegativemoney != 1){
+    nonegativemoney = 1;
+    db.collection("shop")
+    .doc(item,name)
     .get()
-    .then(function (snapshots){
-      if(cost > snapshots.data().money){
-        errormessage("You Don't Have Enough Money")
-        return false;
-      }else{
-        db.collection("shop")
-        .doc(item)
-        .update({
-          left: snapshot.data().left-1
-        })
-        .then(function (snapshot){
-          db.collection("accounts")
-          .doc(localStorage.getItem("userToken"))
-          .get()
-          .then(function (snapshots){
-            var items = snapshots.data().owned;
-            items.push(name)
-            var money = snapshots.data().money
+    .then(function (snapshot){
+      var cost = snapshot.data().cost
+      db.collection("accounts")
+      .doc(localStorage.getItem("userToken"))
+      .get()
+      .then(function (snapshots){
+        if(cost > snapshots.data().money){
+          errormessage("You Don't Have Enough Money")
+        }else{
+          db.collection("shop")
+          .doc(item)
+          .update({
+            left: snapshot.data().left-1
+          })
+          .then(function (snapshot){
             db.collection("accounts")
             .doc(localStorage.getItem("userToken"))
-            .update({
-              owned: items,
-              money: snapshots.data().money - cost
-            })
-            .then(function (snapshot){
-              console.log(money)
-              console.log(cost)
-              document.getElementById("balance").innerText = "Balance: $"+(money-cost)
+            .get()
+            .then(function (snapshots){
+              var items = snapshots.data().owned;
+              items.push(name)
+              var money = snapshots.data().money
+              var amountofitems = snapshots.data().amountofitems
+              db.collection("accounts")
+              .doc(localStorage.getItem("userToken"))
+              .update({
+                owned: items,
+                money: snapshots.data().money - cost,
+                amountofitems: amountofitems + 1
+              })
+              .then(function (snapshot){
+                console.log(money)
+                console.log(cost)
+                document.getElementById("balance").innerText = "Balance: $"+(money-cost)
+                nonegativemoney = 0
+              })
             })
           })
-        })
-      }
+        }
+      })
     })
-  })
+  }
 }

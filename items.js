@@ -116,10 +116,12 @@ function sell(name,username){
       .then(function(snapshot){
         var array = snapshot.data().owned
         array.splice(array.indexOf(name),1)
+        var amountofitems = snapshot.data().amountofitems
         db.collection("accounts")
         .doc(localStorage.getItem("userToken"))
         .update({
-          owned: array
+          owned: array,
+          amountofitems: amountofitems - 1
         })
         .then(function (snapshot){
           exitr()

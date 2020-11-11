@@ -104,6 +104,7 @@ function actualbuy(id,cost){
     if(cost <= snapshot.data().money){
       var items = snapshot.data().owned
       var money = snapshot.data().money
+      var amountofitems = snapshot.data().amountofitems
       db.collection("usershop")
       .doc(id)
       .get()
@@ -123,7 +124,8 @@ function actualbuy(id,cost){
             .doc(localStorage.getItem("userToken"))
             .update({
               owned: items,
-              money: (money-cost)
+              money: (money-cost),
+              amountofitems: amountofitems+1
             })
             .then(function (snapshot){
               db.collection("usershop")
@@ -141,10 +143,6 @@ function actualbuy(id,cost){
     }
   })
 }
-
-
-
-
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   elmnt.onmousedown = dragMouseDown;

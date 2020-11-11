@@ -33,7 +33,8 @@ function signup(){
           money: 50,
           owned: [],
           profile: "https://avatars.dicebear.com/api/bottts/"+username+".svg",
-          tutorial: 0
+          tutorial: 0,
+          amountofitems: 0
         })
         .then(function (snapshot){
           localStorage.setItem("userToken",snapshot.id)
